@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../node_modules/ng-tags-input/build/ng-tags-input.css">
+
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/ng-tags-input/build/ng-tags-input.js"></script>
+    <!-- <script src="build/ng-tags-input.js"></script> -->
+    <script>
+        angular.module('myApp', ['ngTagsInput'])
+            .controller('MyCtrl', function($scope, $http) {
+                $scope.tags = [
+                    { text: 'just' },
+                    { text: 'some' },
+                    { text: 'cool' },
+                    { text: 'tags' }
+                ];
+                $scope.loadTags = function(query) {
+                    return $http.get('/tags?query=' + query);
+                };
+            });
+    </script>
+</head>
+
+<body ng-app="myApp" ng-controller="MyCtrl">
+    <tags-input ng-model="tags">
+        <!-- <auto-complete source="loadTags($query)"></auto-complete> -->
+    </tags-input>
+
+    <!-- <tags-input
+        ng-model="tags"
+        use-strings="false"
+        template="{string}"
+        template-scope="{string}"
+        display-property="{string}"
+        key-property="{string}"
+        type="{string}"
+        text="{string}"
+        tabindex="{number}"
+        placeholder="{string}"
+        min-length="{number}"
+        max-length="{number}"
+        min-tags="{number}"
+        max-tags="{number}"
+        allow-leftover-text="{boolean}"
+        remove-tag-symbol="{string}"
+        add-on-enter="{boolean}"
+        add-on-space="{boolean}"
+        add-on-comma="{boolean}"
+        add-on-blur="{boolean}"
+        add-on-paste="{boolean}"
+        paste-split-pattern="{string}"
+        replace-spaces-with-dashes="{boolean}"
+        allowed-tags-pattern="{string}"
+        enable-editing-last-tag="{boolean}"
+        add-from-autocomplete-only="{boolean}"
+        spellcheck="{boolean}"
+        tag-class="{expression}"
+        on-tag-adding="{expression}"
+        on-tag-added="{expression}"
+        on-invalid-tag="{expression}"
+        on-tag-removing="{expression}"
+        on-tag-removed="{expression}"
+        on-tag-clicked="{expression}">
+        </tags-input> -->
+</body>
+
+</html>
